@@ -135,7 +135,7 @@ function doActivity(state, activityId) {
   const failed = act.failChance > 0 && Math.random() < act.failChance;
 
   // 스탯 처리
-  if (failed) {
+if (failed) {
     if (act.failStats) {
       for (const [stat, range] of Object.entries(act.failStats)) {
         const loss = randInt(Math.abs(range[0]), Math.abs(range[1]));
@@ -143,10 +143,18 @@ function doActivity(state, activityId) {
         result.statGains[stat] = -loss;
       }
     }
+    if (act.failEstp) {
+      for (const [letter, range] of Object.entries(act.failEstp)) {
+        const loss = randInt(range[0], range[1]);
+        next.stats.estp[letter] = clamp(next.stats.estp[letter] - loss);
+        result.estpGains[letter] = -loss;
+      }
+    }
     result.flavor = act.failFlavors
       ? act.failFlavors[randInt(0, act.failFlavors.length - 1)]
       : '실패했다...';
     result.failed = true;
+  }
   } else {
     if (act.stats) {
       for (const [stat, range] of Object.entries(act.stats)) {
