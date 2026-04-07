@@ -105,9 +105,12 @@ const UI = (() => {
   function switchTab(tab) {
     document.getElementById('tab-main').style.display = tab === 'main' ? 'block' : 'none';
     document.getElementById('tab-item').style.display = tab === 'item' ? 'flex'  : 'none';
+    document.getElementById('tab-dex').style.display  = tab === 'dex'  ? 'block' : 'none';
     document.getElementById('nav-main').classList.toggle('active', tab === 'main');
     document.getElementById('nav-item').classList.toggle('active', tab === 'item');
+    document.getElementById('nav-dex').classList.toggle('active',  tab === 'dex');
     if (tab === 'item') renderItemTab();
+    if (tab === 'dex')  renderDexTab();
   }
 
   // ── 전체 렌더 ────────────────────────────────────
@@ -282,6 +285,33 @@ const UI = (() => {
     return cell;
   }
 
+  function renderDexTab() {
+    const grid = document.getElementById('dex-grid');
+    const unlocked = getUnlockedEndings();
+    const total = ENDINGS.filter(e => e.id !== 'gamer_casual').length;
+    const unlockedCount = unlocked.length;
+
+    grid.innerHTML = `<div class="dex-count">${unlockedCount} / ${total} 달성</div>`;
+
+    const shown = [];
+    ENDINGS.forEach(e => {
+      if (shown.includes(e.id)) return;
+      shown.push(e.id);
+      const isUnlocked = unlocked.includes(e.id);
+      const card = document.createElement('div');
+      card.className = `dex-card ${isUnlocked ? 'unlocked' : ''}`;
+      card.innerHTML = `
+        <div class="dex-icon">${e.icon}</div>
+        <div class="dex-info">
+          <div class="dex-name ${isUnlocked ? '' : 'locked'}">${isUnlocked ? e.name : '???'}</div>
+          ${isUnlocked ? `<div class="dex-desc">${e.desc}</div>` : ''}
+          <div class="dex-hint">${e.hint || ''}</div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+  
   // ── 아이템 팝업 ──────────────────────────────────
 
   function openItemPopup(item, isShopping = false) {
@@ -379,6 +409,7 @@ const UI = (() => {
     drawEndingSprite('ending-canvas', ending.sprite, 4);
     drawEndingSprite('save-canvas',   ending.sprite, 2);
 
+    unlockEnding(ending.id);
     showScreen('ending');
   }
 
