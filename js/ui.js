@@ -74,9 +74,6 @@ const UI = (() => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const on   = dark ? '#d8d4c8' : '#2a2620';
-  console.log('캔버스 크기:', canvas.width, canvas.height);
-  console.log('데이터 행수:', data.length);
-  console.log('픽셀 색상:', on);
   for (let r = 0; r < rows; r++)
       for (let c = 0; c < cols; c++)
         if (data[r][c]) { ctx.fillStyle = on; ctx.fillRect(c*px, r*px, px, px); }
