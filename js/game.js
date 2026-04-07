@@ -253,7 +253,7 @@ function buyItem(state, itemId) {
 
 function resolveEnding(state) {
   const eff     = getEffectiveStats(state);
-  const ending  = getEnding(eff, state.flags);
+  const ending  = getEnding(eff, { ...state.flags, activityCounts: state.activityCounts });
   const tier    = getEStpTier(eff.estp);
   const topStat = getTopStat(eff.main);
 
