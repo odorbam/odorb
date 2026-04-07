@@ -15,6 +15,12 @@ const UI = (() => {
     });
   }
 
+  function startGame() {
+    state = newGame();
+    showScreen('game');
+    render();
+  }
+
   // ── 타이틀 로고 애니메이션 ──────────────────────
 
   function buildTitleLogo() {
