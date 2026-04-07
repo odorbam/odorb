@@ -334,27 +334,19 @@ html, body {
 
 /* 활동 결과 토스트 */
 #result-toast {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  bottom: 70px;
+  display: none;
   background: var(--accent);
   color: #fff;
   font-size: 12px;
   padding: 10px 16px;
   border-radius: var(--radius-lg);
-  max-width: 280px;
   text-align: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s, transform 0.2s;
-  z-index: 100;
   line-height: 1.6;
+  margin: 0 0 10px 0;
 }
 
 #result-toast.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  display: block;
 }
 
 /* ── 아이템 탭 ──────────────────────────────────── */
