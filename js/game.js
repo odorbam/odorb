@@ -38,10 +38,13 @@ const INITIAL_STATE = {
     estp: { E: 0, S: 0, T: 0, P: 0 },
   },
   flags: {
-    romanceCount:      0,
-    nTriggered:        0,
-    hairstyleEquipped: false,
-  },
+  romanceCount:      0,
+  nTriggered:        0,
+  hairstyleEquipped: false,
+  pcWins:            0,
+  pcTotal:           0,
+  burgersEaten:      [],
+},
   activityCounts: {},
   equippedItem:   null,
   ownedItems:     [],
@@ -154,6 +157,32 @@ function doActivity(state, activityId) {
       result.nFired = true;
     }
   }
+
+  // PC방 승/패 처리
+if (act.isPcroom) {
+  const win = Math.random() < 0.5;
+  next.flags.pcTotal += 1;
+  if (win) {
+    next.flags.pcWins += 1;
+    next.stats.main.장난스러움 = clamp(next.stats.main.장난스러움 + randInt(5, 9));
+    next.stats.main.멋짐 = clamp(next.stats.main.멋짐 + randInt(2, 4));
+    result.flavor = ['캐리했다! MVP다.', '완벽한 플레이.', 'BLACKSHADOW한테 자랑해야지.'][randInt(0,2)];
+  } else {
+    next.stats.main.장난스러움 = clamp(next.stats.main.장난스러움 + randInt(1, 3));
+    result.flavor = ['졌다... 다음엔 이긴다.', 'gg. 리턴즈.', '억울하다.'][randInt(0,2)];
+  }
+  result.pcResult = win ? '승' : '패';
+}
+
+// 햄버거 4종 추적
+if (act.isBurger) {
+  const shop = act.burgerShops[randInt(0, act.burgerShops.length - 1)];
+  if (!next.flags.burgersEaten.includes(shop)) {
+    next.flags.burgersEaten.push(shop);
+  }
+  result.burgerShop = shop;
+  result.flavor = `${shop} 햄버거! ${act.flavors[randInt(0, act.flavors.length - 1)]}`;
+}
 
   // 활동 횟수 기록
   next.activityCounts[activityId] = (next.activityCounts[activityId] || 0) + 1;
