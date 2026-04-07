@@ -725,3 +725,69 @@ html, body {
 @media (max-width: 390px) {
   #app { max-width: 100%; box-shadow: none; }
 }
+
+
+#tab-dex {
+  padding: 12px 16px;
+}
+
+.dex-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  background: var(--bg2);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+}
+
+.dex-card.unlocked {
+  background: var(--surface);
+  border-color: var(--point);
+}
+
+.dex-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  width: 36px;
+  text-align: center;
+  filter: grayscale(1);
+  opacity: 0.4;
+}
+
+.dex-card.unlocked .dex-icon {
+  filter: none;
+  opacity: 1;
+}
+
+.dex-info { flex: 1; }
+
+.dex-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.dex-name.locked { color: var(--text3); }
+
+.dex-desc {
+  font-size: 11px;
+  color: var(--text2);
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.dex-hint {
+  font-size: 10px;
+  color: var(--point2);
+  line-height: 1.5;
+}
+
+.dex-count {
+  font-size: 10px;
+  color: var(--text3);
+  text-align: right;
+  margin-bottom: 8px;
+}
