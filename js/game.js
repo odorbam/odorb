@@ -164,15 +164,6 @@ function doActivity(state, activityId) {
     }
   }
 
-  // ESTP 상승
-  if (act.estp) {
-    for (const [letter, range] of Object.entries(act.estp)) {
-      const gain = randInt(range[0], range[1]);
-      next.stats.estp[letter] = clamp(next.stats.estp[letter] + gain);
-      result.estpGains[letter] = gain;
-    }
-  }
-
   // 로맨스 영화 특수처리
   if (act.id === 'romance') {
     next.flags.romanceCount += 1;
@@ -354,4 +345,18 @@ function loadGame() {
 
 function newGame() {
   return deepClone(INITIAL_STATE);
+}
+
+function getUnlockedEndings() {
+  try {
+    return JSON.parse(localStorage.getItem('worakbam_endings') || '[]');
+  } catch { return []; }
+}
+
+function unlockEnding(endingId) {
+  const list = getUnlockedEndings();
+  if (!list.includes(endingId)) {
+    list.push(endingId);
+    localStorage.setItem('worakbam_endings', JSON.stringify(list));
+  }
 }
