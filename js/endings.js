@@ -5,6 +5,7 @@ const ENDINGS = [
     name: '라이즈 데뷔',
     icon: '🎊',
     desc: '드디어 데뷔했다. 우락밤의 이름이 전세계에 울려퍼진다.',
+    hint: '모든 것이 균형잡힌 우락밤만이 닿을 수 있다. 그리고... 뭔가 하나가 더 필요한 것 같다, 아주 멋진 것이...',
     sprite: 'ending_riize',
     condition: (stats, flags) => {
       const vals = Object.values(stats.main);
@@ -24,6 +25,7 @@ const ENDINGS = [
     name: '우드 벨락밤',
     icon: '⚽',
     desc: '축구선수로 자라나 리얼 밤드리드에 입단',
+    hint: '운동장을 누구보다 많이 달린 밤에게 찾아온다.',
     sprite: 'ending_soccer',
     condition: (stats, flags) => {
       const soccerCount = (flags.activityCounts?.soccer || 0) + (flags.activityCounts?.soccer_teen || 0);
@@ -41,6 +43,7 @@ const ENDINGS = [
     name: '브락트니 숑피어스',
     icon: '🎤',
     desc: '키만한 고음을 뽑아내고 있다. 뿔 뒤에 생쥐가 살고있다는 소문이..',
+    hint: '장난치는 것 같지만, 사실 멋지고 싶다! 노래방에서 마이크를 놓지 않은 우락밤의 미래는?',
     sprite: 'ending_singer',
     condition: (stats, flags) => {
       const singCount = (flags.activityCounts?.sing || 0);
@@ -58,6 +61,7 @@ const ENDINGS = [
     name: '밤이커',
     icon: '🎮',
     desc: '리그오브락전전드 프로게임단 R1의 미드라이너. 정글러 BLACKSHADOW와 영원의 듀오.',
+    hint: 'PC방에 월세 내도 될듯! 많이 이기면 신의 경지에 도달할지도...',
     sprite: 'ending_gamer',
     condition: (stats, flags) => {
       const pcTotal = flags.pcTotal || 0;
@@ -76,6 +80,7 @@ const ENDINGS = [
     name: '밤이커',
     icon: '🎮',
     desc: '우락대학교 락밤학과의 밤이커. 미드라이너로 대활약중!',
+    hint: 'PC방에 월세 내도 될듯! 승률은? 글쎄...',
     sprite: 'ending_gamer',
     condition: (stats, flags) => {
       const pcTotal = flags.pcTotal || 0;
@@ -94,6 +99,7 @@ const ENDINGS = [
     name: '공주',
     icon: '🦕',
     desc: '강아지를 주웠다! 그런데 어쩐지 공룡같기도...?',
+    hint: '겨울이와 각별한 사이인 밤에게 찾아온다.',
     sprite: 'ending_dragon',
     condition: (stats, flags) => {
       const winterCount = flags.activityCounts?.winter || 0;
@@ -111,6 +117,7 @@ const ENDINGS = [
     name: '순정만화',
     icon: '📖',
     desc: '순정만화 속 서브남주에 빙의했다! 경쟁자인 남자주인공은... 엥? 토끼야 고양이야?',
+    hint: '로맨스 영화를 너무 즐겨봤나봐! 우락밤, 사실은 N...?',
     sprite: 'ending_romance',
     condition: (stats, flags) => {
       return (
@@ -131,6 +138,7 @@ const ENDINGS = [
     name: '예쁜나이스물여섯살',
     icon: '💅',
     desc: '엄청나게 예쁜 스물여섯살이 되었다',
+    hint: '예쁜나이스물다섯살을 지났더니 예쁜나이스물...',
     sprite: 'ending_pretty',
    condition: (stats, flags) => {
   return stats.main.귀여움 >= 70 && stats.main.사랑스러움 >= 70 && stats.estp.E <= 30;
@@ -147,6 +155,7 @@ const ENDINGS = [
     name: '햄부기탐험가',
     icon: '🍔',
     desc: '전세계를 돌아다니며 다양한 햄버거를 탐구하는 유일무이 햄문가로 성장했다.',
+    hint: '다양한 햄버거를 두루 섭렵한 밤에게 찾아온다.',
     sprite: 'ending_burger',
     condition: (stats, flags) => {
       const burgerCount = flags.activityCounts?.burger || 0;
@@ -166,6 +175,7 @@ const ENDINGS = [
     name: '헬스 트레이너',
     icon: '💪',
     desc: '어쩐지 슬림하기만한 트레이너... 일본에서 온 회원님이 더 우락부락하다는 소문이 있다',
+    hint: '열심히 운동한 밤에게 찾아온다. 어라, 근데 운동을 많이 하진 않은듯...?',
     sprite: 'ending_trainer',
     condition: (stats, flags) => {
       const soccerCount = (flags.activityCounts?.soccer || 0) + (flags.activityCounts?.soccer_teen || 0);
@@ -183,6 +193,7 @@ const ENDINGS = [
     name: '미니밤',
     icon: '🌰',
     desc: '아차, 18.6cm의 엄청나게 작은 미니밤으로 자라났다...!',
+    hint: '귀여우면 그만! 근데 아무것도 안 해도 귀엽잖아?',
     sprite: 'ending_mini',
     condition: (stats, flags) => {
       const vals = Object.values(stats.main);
