@@ -132,9 +132,9 @@ const ENDINGS = [
     icon: '💅',
     desc: '엄청나게 예쁜 스물여섯살이 되었다',
     sprite: 'ending_pretty',
-    condition: (stats) => {
-      return stats.main.귀여움 >= 70 && stats.main.사랑스러움 >= 70 && stats.estp.E <= 30;
-    },
+   condition: (stats, flags) => {
+  return stats.main.귀여움 >= 70 && stats.main.사랑스러움 >= 70 && stats.estp.E <= 30;
+},
     priority: 6,
     estp: {
       high: '예쁜데 입도 살아있다. 본인도 알고 있고 숨기지도 않는다.',
@@ -184,7 +184,7 @@ const ENDINGS = [
     icon: '🌰',
     desc: '아차, 18.6cm의 엄청나게 작은 미니밤으로 자라났다...!',
     sprite: 'ending_mini',
-    condition: (stats) => {
+    condition: (stats, flags) => {
       const vals = Object.values(stats.main);
       const max = Math.max(...vals);
       return stats.main.귀여움 === max && stats.main.귀여움 >= 60;
