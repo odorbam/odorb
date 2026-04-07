@@ -197,3 +197,25 @@ const ENDINGS = [
   },
 
 ];
+
+function getEnding(stats, flags) {
+  const sorted = [...ENDINGS].sort((a, b) => b.priority - a.priority);
+  return sorted.find(e => e.condition(stats, flags)) || ENDINGS[ENDINGS.length - 1];
+}
+
+function getEStpTier(estp) {
+  const total = (estp.E || 0) + (estp.S || 0) + (estp.T || 0) + (estp.P || 0);
+  return total >= 200 ? 'high' : 'low';
+}
+
+function getTopStat(mainStats) {
+  return Object.entries(mainStats).sort((a, b) => b[1] - a[1])[0][0];
+}
+
+const ENDING_STAT_LABELS = {
+  장난스러움: '세상에서 제일 장난스럽다',
+  귀여움:    '엄청나게 귀엽다',
+  사랑스러움:  '숨막히게 사랑스럽다',
+  멋짐:     '말도안되게 멋있다',
+  활발함:    '지구상에서 제일 활발하다',
+};
