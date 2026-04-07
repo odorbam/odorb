@@ -148,24 +148,26 @@ const UI = (() => {
   // ── 캐릭터 도트 렌더 ─────────────────────────────
 
   function drawCharacter() {
-    const stageId = STAGES[state.stage].id;
-    const spriteMap = { baby: window.SPRITE_BABY, child: window.SPRITE_CHILD, teen: window.SPRITE_TEEN };
-    const data = spriteMap[stageId];
-    if (!data) return;
+  const stageId = STAGES[state.stage].id;
+  const data = stageId === 'baby' ? window.SPRITE_BABY
+             : stageId === 'child' ? window.SPRITE_CHILD
+             : window.SPRITE_TEEN;
 
-    const canvas = document.getElementById('char-canvas');
-    const rows = data.length, cols = data[0].length;
-    const px = 5;
-    canvas.width  = cols * px;
-    canvas.height = rows * px;
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const on   = dark ? '#d8d4c8' : '#2a2620';
-    for (let r = 0; r < rows; r++)
-      for (let c = 0; c < cols; c++)
-        if (data[r][c]) { ctx.fillStyle = on; ctx.fillRect(c*px, r*px, px, px); }
-  }
+  if (!data) { console.log('스프라이트 없음:', stageId); return; }
+
+  const canvas = document.getElementById('char-canvas');
+  const rows = data.length, cols = data[0].length;
+  const px = 5;
+  canvas.width  = cols * px;
+  canvas.height = rows * px;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const on   = dark ? '#d8d4c8' : '#2a2620';
+  for (let r = 0; r < rows; r++)
+    for (let c = 0; c < cols; c++)
+      if (data[r][c]) { ctx.fillStyle = on; ctx.fillRect(c*px, r*px, px, px); }
+}
 
   // ── 활동 버튼 렌더 ───────────────────────────────
 
