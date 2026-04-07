@@ -95,7 +95,12 @@
   </div>
 
   <!-- 엔딩 화면 -->
-  <div id="screen-ending" class="screen">
+<div id="screen-ending" class="screen">
+    <canvas id="save-canvas" style="display:none;"></canvas>
+    <div class="ending-btns">
+      <button class="ending-btn primary" onclick="UI.saveEndingImage()">이미지로 저장</button>
+      <button class="ending-btn" onclick="UI.restart()">다시 키우기</button>
+    </div>
     <div class="ending-illust-wrap">
       <canvas id="ending-canvas"></canvas>
       <div class="ending-overlay">
@@ -107,21 +112,6 @@
     <div class="ending-divider"></div>
     <div class="ending-stat-label" id="ending-stat-label"></div>
     <div class="ending-activity-label" id="ending-activity-label"></div>
-    <div class="save-preview">
-      <div class="save-preview-label">저장 이미지 미리보기</div>
-      <div class="save-illust-wrap">
-        <canvas id="save-canvas"></canvas>
-        <div class="save-overlay">
-          <div class="save-overlay-title" id="save-title"></div>
-        </div>
-      </div>
-      <div class="save-line" id="save-stat-line"></div>
-      <div class="save-line" id="save-activity-line"></div>
-    </div>
-    <div class="ending-btns">
-      <button class="ending-btn primary" onclick="UI.saveEndingImage()">이미지로 저장</button>
-      <button class="ending-btn" onclick="UI.restart()">다시 키우기</button>
-    </div>
   </div>
 
   <!-- 오버레이/토스트 -->
