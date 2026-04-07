@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>우락밤 키우기</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <!-- 타이틀 화면 -->
+  <div id="screen-title" class="screen active">
+    <div class="title-logo" id="title-logo"></div>
+    <div class="title-dot-wrap">
+      <canvas id="title-mini-canvas" width="1" height="1"></canvas>
+    </div>
+    <button class="title-start-btn" id="btn-start">시작하기</button>
+  </div>
+
+  <!-- 게임 화면 -->
+  <div id="screen-game" class="screen">
+
+    <!-- 상단 상태바 -->
+    <div id="top-bar">
+      <div class="top-row">
+        <span class="top-tag" id="tag-stage">아기</span>
+        <span class="top-tag money" id="tag-money">용돈 <b>₩0</b></span>
+        <span class="top-tag energy" id="tag-energy">에너지 <b>100</b></span>
+      </div>
+    </div>
+
+    <!-- 고정 영역 -->
+    <div id="fixed-area">
+      <div id="estp-bar">
+        <div class="estp-item"><span class="estp-letter">E</span><div class="estp-track"><div class="estp-fill" id="estp-E" style="width:0%"></div></div></div>
+        <div class="estp-item"><span class="estp-letter">S</span><div class="estp-track"><div class="estp-fill" id="estp-S" style="width:0%"></div></div></div>
+        <div class="estp-item"><span class="estp-letter">T</span><div class="estp-track"><div class="estp-fill" id="estp-T" style="width:0%"></div></div></div>
+        <div class="estp-item"><span class="estp-letter">P</span><div class="estp-track"><div class="estp-fill" id="estp-P" style="width:0%"></div></div></div>
+      </div>
+      <div id="char-area">
+        <canvas id="char-canvas"></canvas>
+        <div id="equipped-badge" style="display:none;"></div>
+      </div>
+      <div id="stat-area">
+        <div class="stat-row"><span class="stat-label">장난스러움</span><div class="stat-bar-wrap"><div class="stat-fill 장난스러움" id="bar-장난스러움" style="width:10%"></div></div></div>
+        <div class="stat-row"><span class="stat-label">귀여움</span><div class="stat-bar-wrap"><div class="stat-fill 귀여움" id="bar-귀여움" style="width:10%"></div></div></div>
+        <div class="stat-row"><span class="stat-label">사랑스러움</span><div class="stat-bar-wrap"><div class="stat-fill 사랑스러움" id="bar-사랑스러움" style="width:10%"></div></div></div>
+        <div class="stat-row"><span class="stat-label">멋짐</span><div class="stat-bar-wrap"><div class="stat-fill 멋짐" id="bar-멋짐" style="width:10%"></div></div></div>
+        <div class="stat-row"><span class="stat-label">활발함</span><div class="stat-bar-wrap"><div class="stat-fill 활발함" id="bar-활발함" style="width:10%"></div></div></div>
+      </div>
+    </div>
+
+    <!-- 스크롤 영역 -->
+    <div id="scroll-area">
+
+      <!-- 메인 탭 (활동) -->
+      <div id="tab-main" class="tab-content active">
+        <div class="turn-label" id="turn-label">턴 0 / 15</div>
+        <div class="act-grid" id="act-grid"></div>
+      </div>
+
+      <!-- 아이템 탭 -->
+      <div id="tab-item" class="tab-content" style="display:none;">
+        <div>
+          <div class="item-section-title">장착 슬롯</div>
+          <div class="equip-slot empty" id="equip-slot" onclick="UI.openEquipPopup()">비어있음</div>
+        </div>
+        <div>
+          <div class="item-section-title">보유 아이템</div>
+          <div class="item-grid" id="owned-grid"></div>
+        </div>
+        <div>
+          <div class="item-section-title">상점</div>
+          <div class="item-grid" id="shop-grid"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 하단 네비게이션 -->
+    <div id="bottom-nav">
+      <button class="nav-btn active" id="nav-main" onclick="UI.switchTab('main')">메인</button>
+      <button class="nav-btn" id="nav-item" onclick="UI.switchTab('item')">아이템</button>
+    </div>
+
+  </div>
+
+  <!-- 엔딩 화면 -->
+  <div id="screen-ending" class="screen">
+    <div class="ending-illust-wrap">
+      <canvas id="ending-canvas"></canvas>
+      <div class="ending-overlay">
+        <div class="ending-overlay-title" id="ending-title"></div>
+        <div class="ending-overlay-desc" id="ending-desc"></div>
+      </div>
+    </div>
+    <div class="ending-estp-text" id="ending-estp-text"></div>
+    <div class="ending-divider"></div>
+    <div class="ending-stat-label" id="ending-stat-label"></div>
+    <div class="ending-activity-label" id="ending-activity-label"></div>
+    <div class="save-preview">
+      <div class="save-preview-label">저장 이미지 미리보기</div>
+      <div class="save-illust-wrap">
+        <canvas id="save-canvas"></canvas>
+        <div class="save-overlay">
+          <div class="save-overlay-title" id="save-title"></div>
+        </div>
+      </div>
+      <div class="save-line" id="save-stat-line"></div>
+      <div class="save-line" id="save-activity-line"></div>
+    </div>
+    <div class="ending-btns">
+      <button class="ending-btn primary" onclick="UI.saveEndingImage()">이미지로 저장</button>
+      <button class="ending-btn" onclick="UI.restart()">다시 키우기</button>
+    </div>
+  </div>
+
+  <!-- 오버레이/토스트 -->
+  <div id="result-toast"></div>
+  <div id="unlock-toast"></div>
+  <div id="item-popup">
+    <div class="popup-name" id="popup-name"></div>
+    <div class="popup-desc" id="popup-desc"></div>
+    <div class="popup-bonus" id="popup-bonus"></div>
+    <div class="popup-btns" id="popup-btns"></div>
+  </div>
+  <div id="stage-overlay">
+    <div class="stage-overlay-text" id="stage-overlay-text"></div>
+    <div class="stage-overlay-sub">계속하려면 탭하세요</div>
+  </div>
+
+</div>
+
+<!-- 스프라이트 데이터 -->
+<script src="sprites/baby.js"></script>
+<script src="sprites/child.js"></script>
+<script src="sprites/teen.js"></script>
+
+<!-- 게임 데이터 -->
+<script src="js/activities.js"></script>
+<script src="js/items.js"></script>
+<script src="js/endings.js"></script>
+<script src="js/game.js"></script>
+
+<!-- UI -->
+<script src="js/ui.js"></script>
+
+</body>
+</html>
