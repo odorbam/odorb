@@ -15,10 +15,15 @@ const UI = (() => {
     });
   }
 
-  function startGame() {
-    state = newGame();
-    showScreen('game');
-    render();
+ function init() {
+    buildTitleLogo();
+    document.getElementById('btn-start').addEventListener('click', startGame);
+    document.getElementById('stage-overlay').addEventListener('click', dismissStageOverlay);
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#item-popup') && !e.target.closest('.item-cell') && !e.target.closest('.equip-slot')) {
+        closePopup();
+      }
+    });
   }
 
   // ── 타이틀 로고 애니메이션 ──────────────────────
