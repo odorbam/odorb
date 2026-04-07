@@ -108,6 +108,7 @@ const ACTIVITIES = {
       name: '겨울이랑 놀기',
       icon: '🐶',
       energy: 15,
+      restores: true,
       stats: {
         사랑스러움: [4, 8],
         귀여움:   [3, 6],
@@ -122,6 +123,7 @@ const ACTIVITIES = {
       name: '게임하기',
       icon: '🎮',
       energy: 12,
+      restores: true,
       stats: {
         장난스러움: [3, 7],
         멋짐:    [2, 5],
