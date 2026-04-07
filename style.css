@@ -313,7 +313,13 @@ html, body {
   transition: background 0.12s, border-color 0.12s, transform 0.08s;
   line-height: 1.4;
 }
-
+.act-btn.restores {
+  background: #eef9f4;
+  border-color: #9fe1cb;
+}
+.act-btn.restores:hover {
+  background: #ddf5ec;
+}
 .act-btn:hover  { background: var(--bg3); border-color: var(--border2); }
 .act-btn:active { transform: scale(0.97); }
 
