@@ -67,7 +67,7 @@ const ENDINGS = [
     priority: 8,
     estp: {
       high: '3연속 우승을 해냈다! 이 영광을 현실의 FAK**님에게 돌립니다.',
-      low:  'RAKBAM's SHOCKWAVE!! WILL FIND THEM ALL!!',
+      low:  "RAKBAM's SHOCKWAVE!! WILL FIND THEM ALL!!",
     },
   },
 
