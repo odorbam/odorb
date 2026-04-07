@@ -154,7 +154,6 @@ if (failed) {
       ? act.failFlavors[randInt(0, act.failFlavors.length - 1)]
       : '실패했다...';
     result.failed = true;
-  }
   } else {
     if (act.stats) {
       for (const [stat, range] of Object.entries(act.stats)) {
