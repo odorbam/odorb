@@ -27,7 +27,7 @@ const ENDINGS = [
     sprite: 'ending_soccer',
     condition: (stats, flags) => {
   const soccerCount = (flags.activityCounts?.soccer || 0) + (flags.activityCounts?.soccer_teen || 0);
-  return stats.main.활발함 >= 75 && stats.main.멋짐 >= 55 && soccerCount >= 5;
+  return stats.main.활발함 >= 75 && stats.main.멋짐 >= 55 && soccerCount >= 25;
 },
     priority: 7,
     estp: {
