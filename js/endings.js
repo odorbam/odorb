@@ -25,9 +25,10 @@ const ENDINGS = [
     icon: '⚽',
     desc: '축구선수로 자라나 리얼 밤드리드에 입단',
     sprite: 'ending_soccer',
-    condition: (stats) => {
-      return stats.main.활발함 >= 75 && stats.main.멋짐 >= 55;
-    },
+    condition: (stats, flags) => {
+  const soccerCount = (flags.activityCounts?.soccer || 0) + (flags.activityCounts?.soccer_teen || 0);
+  return stats.main.활발함 >= 75 && stats.main.멋짐 >= 55 && soccerCount >= 5;
+},
     priority: 7,
     estp: {
       high: '골을 넣고 관중석을 향해 달려갔다. 세레모니는 즉흥이었다. 완벽했다.',
@@ -105,9 +106,9 @@ const ENDINGS = [
 
   {
     id: 'pretty',
-    name: '예쁜나이스물다섯살',
+    name: '예쁜나이스물여섯살',
     icon: '💅',
-    desc: '엄청나게 예쁜 스물다섯살이 되었다',
+    desc: '엄청나게 예쁜 스물여섯살이 되었다',
     sprite: 'ending_pretty',
     condition: (stats) => {
       const { 귀여움, 사랑스러움, 멋짐 } = stats.main;
