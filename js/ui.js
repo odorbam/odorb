@@ -183,6 +183,7 @@ const UI = (() => {
       const hasEnergy  = act.restores || state.energy >= act.energy;
       if (!canAfford || !hasEnergy) btn.classList.add('disabled');
 
+      if (act.restores) btn.classList.add('restores');
       btn.innerHTML = `<span class="act-icon">${act.icon}</span><span class="act-name">${act.name}</span>`;
       btn.addEventListener('click', () => onActivity(act.id));
       grid.appendChild(btn);
