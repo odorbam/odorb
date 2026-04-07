@@ -78,13 +78,19 @@
         </div>
       </div>
 
+       <!-- 도감 탭 -->
+      <div id="tab-dex" class="tab-content" style="display:none;">
+        <div id="dex-grid"></div>
+      </div>
+
     </div>
 
     <!-- 하단 네비게이션 -->
-    <div id="bottom-nav">
-      <button class="nav-btn active" id="nav-main" onclick="UI.switchTab('main')">메인</button>
-      <button class="nav-btn" id="nav-item" onclick="UI.switchTab('item')">아이템</button>
-    </div>
+   <div id="bottom-nav">
+  <button class="nav-btn active" id="nav-main" onclick="UI.switchTab('main')">메인</button>
+  <button class="nav-btn" id="nav-item" onclick="UI.switchTab('item')">아이템</button>
+  <button class="nav-btn" id="nav-dex" onclick="UI.switchTab('dex')">도감</button>
+</div>
 
   </div>
 
